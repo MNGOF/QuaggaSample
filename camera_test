@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カメラ映像表示</title>
+  <style>
+    video { width: 100%; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <video id="camera" autoplay playsinline></video>
+  <script>
+    const video = document.getElementById('camera');
+    navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment' },
+      audio: false
+    })
+    .then(stream => {
+      video.srcObject = stream;
+    })
+    .catch(err => {
+      alert('カメラにアクセスできません: ' + err);
+    });
+  </script>
+</body>
+</html>
